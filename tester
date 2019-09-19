@@ -1,0 +1,103 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+from selenium.common.exceptions import ElementClickInterceptedException
+
+#open driver
+driver = webdriver.Chrome("C:\Python37\chromedriver.exe")
+#open the page for testing
+driver.set_page_load_timeout("10")
+driver.get("http://hudl.com")
+
+#grab the login button and click on it
+loginButton=driver.find_element_by_xpath("//a[@class='btn__blue login']")
+loginButton.click()
+#enter the email and no password to check error box
+time.sleep(3)
+driver.find_element_by_id("email").send_keys("mstansberry3@gmail.com")
+driver.find_element_by_id("logIn").send_keys(Keys.ENTER)
+time.sleep(3)
+
+#then try with readding a wrong password
+driver.find_element_by_id("password").send_keys("wrongpassword")
+driver.find_element_by_id("logIn").send_keys(Keys.ENTER)
+time.sleep(3)
+
+#Finally get the correct password
+driver.find_element_by_id("password").clear()
+driver.find_element_by_id("password").send_keys("password1")
+driver.find_element_by_id("logIn").send_keys(Keys.ENTER)
+time.sleep(5)
+driver.close()
+
+#close window and go again without any errors
+#open driver
+driver = webdriver.Chrome("C:\Python37\chromedriver.exe")
+#open the page for testing
+driver.set_page_load_timeout("10")
+driver.get("http://hudl.com")
+
+#grab the login button and click on it
+loginButton=driver.find_element_by_xpath("//a[@class='btn__blue login']")
+loginButton.click()
+#enter the email and password
+time.sleep(2)
+driver.find_element_by_id("email").send_keys("mstansberry3@gmail.com")
+driver.find_element_by_id("password").send_keys("password1")
+driver.find_element_by_id("logIn").send_keys(Keys.ENTER)
+time.sleep(5)
+driver.close()
+
+#try the mobile button
+#open driver
+driver = webdriver.Chrome("C:\Python37\chromedriver.exe")
+#open the page for testing
+driver.set_page_load_timeout("10")
+driver.get("http://hudl.com")
+driver.set_window_size(500,500)
+mobileLoginButton=driver.find_element_by_xpath("//a[@class='btn__blue mobile-login login']")
+mobileLoginButton.click()
+
+
+#enter the email and no password to check error box
+time.sleep(3)
+driver.find_element_by_id("email").send_keys("mstansberry3@gmail.com")
+driver.find_element_by_id("logIn").send_keys(Keys.ENTER)
+time.sleep(3)
+
+#then try with readding a wrong password
+driver.find_element_by_id("password").send_keys("wrongpassword")
+driver.find_element_by_id("logIn").send_keys(Keys.ENTER)
+time.sleep(3)
+
+#Finally get the correct password
+driver.find_element_by_id("password").clear()
+driver.find_element_by_id("password").send_keys("password1")
+driver.find_element_by_id("logIn").send_keys(Keys.ENTER)
+time.sleep(5)
+driver.close()
+
+#open driver
+driver = webdriver.Chrome("C:\Python37\chromedriver.exe")
+#open the page for testing
+driver.set_page_load_timeout("10")
+driver.get("http://hudl.com")
+driver.set_window_size(500,500)
+
+#grab the login button and click on it
+time.sleep(1)
+mobileLoginButton=driver.find_element_by_xpath("//a[@class='btn__blue mobile-login login']")
+mobileLoginButton.click()
+
+#enter the email and password
+driver.find_element_by_id("email").send_keys("mstansberry3@gmail.com")
+driver.find_element_by_id("password").send_keys("password1")
+driver.find_element_by_id("logIn").send_keys(Keys.ENTER)
+time.sleep(3)
+driver.quit()
+
+
+
+#tried to get the remember me button clicked but every variation I tried was a dead end.
+#driver.find_element_by_name("rm").click()
+
